@@ -35,8 +35,10 @@ D0            |                 | Sensor 1    |
 D1            | SCL             |             |
 D2            | SDA             |             |
 D5            |                 | Sensor 2    |
-D5            |                 | Sensor 3    |
+D6            |                 | Sensor 3    |
 D8            |                 |             | CONTROL
+
+The software is build the way it can get triggers from up to three PIR motion sensors. But the project will also work with only one sensor connected. The diagram bellow only shows two sensors, my test setup in the picture only uses one sensor.
 
 <img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/halloween-pumpkin-fire.png"  alt="Breadboard" width="640">
 
