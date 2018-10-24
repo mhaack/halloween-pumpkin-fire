@@ -1,13 +1,13 @@
-Halloween Jack-O-Lantern flamethrower project
-=============================================
+IoT Halloween Jack-O-Lantern flamethrower project
+=================================================
 
 [![Build Status](https://circleci.com/gh/mhaack/halloween-pumpkin-fire/tree/master.svg?style=shield)](https://circleci.com/gh/mhaack/halloween-pumpkin-fire/tree/master)
 
-A flame throwing Jack-O-Lantern is a real Halloween highlight and definitely something to impress the trick-or-treaters and your neighbors. Your are anti-Halloween? This is for you as well, a little fire will make even the most bold of people think twice about approaching your door and to risk life for the chance of a tiny box of sweets. 
+A flame throwing Jack-O-Lantern is a real Halloween highlight and definitely something to impress the trick-or-treaters and your neighbors. A internet controlled IoT flame throwing Jack-O-Lantern is even better. Your are anti-Halloween? This is for you as well, a little fire will make even the most bold of people think twice about approaching your door and to risk life for the chance of a tiny box of sweets. 
 
-This is actually my second version of the flame throwing jack-o'-lantern 😀 I already build one last year using a modified room spray (like <— link —>). But these do not allow to control the flame directly so I decided I need to build a more pro version which allows to control the duration of the flame. 
+This is actually my second version of the flame throwing jack-o'-lantern 😀 I already build one last year using a modified room spray. But these do not allow to control the flame directly so I decided I need to build a more pro version which allows to control the duration of the flame. 
 
-This repository contains the Arduino software of the project and some details about the electronics. The fill project description including the preparation of the pumpkin, the flamethrower part and the full assemble can be found on Hackster.io
+This repository contains the Arduino software of the project and some details about the electronics. The fill project description including the preparation of the pumpkin, the flamethrower part and the full assemble can be found on Hackster.io.
 
 ## Hardware
 * ESP8266 (Wemos D1 mini, Nodemcu) or ESP32
