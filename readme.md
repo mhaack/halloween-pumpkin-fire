@@ -38,9 +38,9 @@ D5            |                 | Sensor 2    |
 D5            |                 | Sensor 3    |
 D8            |                 |             | CONTROL
 
-<img src="https://github.com/mhaack/halloween-pumpkin-eyes/blob/master/doc/halloween-pumpkin-fire.png"  alt="Breadboard" width="640">
+<img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/halloween-pumpkin-fire.png"  alt="Breadboard" width="640">
 
-<img src="https://github.com/mhaack/halloween-pumpkin-eyes/blob/master/doc/electronics-1.jpg"  alt="Electronics 1" width="640">
+<img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/electronics-1.jpg"  alt="Electronics 1" width="640">
 
 
 ## Software
@@ -48,7 +48,7 @@ D8            |                 |             | CONTROL
 The following software libraries are used. If using PlatformIO all dependencies are resolved automatically.
 
 - [Homie V2](https://github.com/marvinroger/homie-esp8266) including dependencies
-- [SSD1306 driver for ESP8266 platform] (https://github.com/squix78/esp8266-oled-ssd1306)
+- [SSD1306 driver for ESP8266 platform](https://github.com/squix78/esp8266-oled-ssd1306)
 - [NTPClient to connect to a time server](https://github.com/arduino-libraries/NTPClient)
 - Optionally PlatformIO environment for building the code
 
