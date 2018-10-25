@@ -91,18 +91,21 @@ void setup() {
 
 void loop() { Homie.loop(); }
 
+void loopHandler() {
+    timeClient.update();
+    if (fireOn && (millis() - lastFire >= fireDurationSetting.get() || lastFire == 0)) {
+        fire(false);
+    }
+}
+
 bool fireHandler(const HomieRange &range, const String &value) {
-    if (value != "true" && value != "false") {
+    if (value != "true") {
         return false;
     }
 
-    bool on = (value == "true");
-    if (on) {
-        lastFire = 0;
-    }
-    fire(on);
-    Homie.getLogger() << "Trigger fire via MQTT: " << (on ? "on" : "off") << endl;
-
+    lastFire = 0;
+    fire(true);
+    Homie.getLogger() << "Trigger fire via MQTT" << endl;
     return true;
 }
 
@@ -151,12 +154,5 @@ void fire(bool fire) {
         servoNode.setPos(OFF_POS);
         fireNode.setProperty("on").send(String(fire));
         fireOn = false;
-    }
-}
-
-void loopHandler() {
-    timeClient.update();
-    if (fireOn && (millis() - lastFire >= fireDurationSetting.get() || lastFire == 0)) {
-        fire(false);
     }
 }
