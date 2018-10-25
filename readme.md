@@ -7,7 +7,7 @@ A flame throwing Jack-O-Lantern is a real Halloween highlight and definitely som
 
 This Jack-O-Lantern is internet connected and can be controlled via MQTT protocol. That way the project can be integrated into a home automation solution like [OpenHab](https://www.openhab.org) or [Home Assistant](https://www.home-assistant.io) to control the flamethrower from there or via Alexa or Google Home.
 
-Your are anti-Halloween? This is for you as well, a little fire will make even the most bold of people think twice about approaching your door.
+Your are "not so much" interested in Halloween? This is for you as well, a little fire will make even the most bold of people think twice about approaching your door.
 
 This is actually my second version of the flame throwing Jack-O-Lantern. I already build one last year using a modified room spray. But these do not allow to control the flame directly so I decided I need to build a more pro version which allows to control the duration and intensity of the flame. 
 
@@ -17,18 +17,18 @@ This repository contains the Arduino software of the project and some details ab
 * ESP8266 (Wemos D1 mini, Nodemcu) or ESP32
 * SSD1306 display
 * 1-3 PIR motion sensors
-* Servo motor
+* Strong servo motor
 * Prototyping board
 * male & female pin headers
 * USB cable and power supply
 
 The display is not really needed for this project, it is just used for fun to display some little animation and information which of the motion sensors triggered the fire.
 
-As usual I got the most parts from [Aliexpress](https://www.aliexpress.com) but all the parts should be available via ebay or amazon.com as well. A full list of all the materials and tools to be build this projects can be found on Hackster.io.
+As usual I got the most parts from [Aliexpress](https://www.aliexpress.com) but all the parts should be available via other sources like ebay or amazon.com as well. A full list of all the materials and tools needed to be build this projects can be found on Hackster.io.
 
 ## Building the circuit
 
-The electronics part is not that complex. Wire the servo, PIR motion sensor and display to the ESP8266 board and done.
+The electronics part is not that complex. Wire the servo, PIR motion sensor(s) and display to the ESP8266 board and done.
 
 Wemos D1 mini | SSD1306 display | PIR Sensor  | Servo
 ------------- | --------------- | ----------- | -----
@@ -42,7 +42,7 @@ D5            |                 | Sensor 2    |
 D6            |                 | Sensor 3    |
 D8            |                 |             | CONTROL
 
-The software is build the way it can get triggers from up to three PIR motion sensors. But the project will also work with only one sensor connected. The diagram bellow only shows two sensors, my test setup in the picture only uses one sensor.
+The software is build the way it can get trigger signals from up to three PIR motion sensors. But the project will also work with only one sensor connected. The diagram bellow shows two sensors, my test setup in the picture only uses one sensor.
 
 <img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/halloween-pumpkin-fire.png"  alt="Breadboard" width="640">
 
@@ -50,6 +50,8 @@ The software is build the way it can get triggers from up to three PIR motion se
 
 
 ## Software
+
+The code is writen in C++, `halloween.cpp` is the main class.
 
 The following software libraries are used. If using PlatformIO all dependencies are resolved automatically.
 
