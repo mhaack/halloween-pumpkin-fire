@@ -14,10 +14,12 @@ This is actually my second version of the flame throwing Jack-O-Lantern. I alrea
 This repository contains the Arduino software of the project and some details about the electronics. The full project description including the preparation of the pumpkin, the flamethrower part and the entire assembly can be found on Hackster.io.
 
 ## Hardware
+The following components are needed:
+
 * ESP8266 (Wemos D1 mini, Nodemcu) or ESP32
-* SSD1306 display
 * 1-3 PIR motion sensors
 * Strong servo motor
+* SSD1306 display (optional)
 * Prototyping board
 * male & female pin headers
 * USB cable and power supply
@@ -26,31 +28,7 @@ The display is not really needed for this project, it is just used for fun to di
 
 As usual I got the most parts from [Aliexpress](https://www.aliexpress.com) but all the parts should be available via other sources like ebay or amazon.com as well. A full list of all the materials and tools needed to be build this projects can be found on Hackster.io.
 
-## Building the circuit
-
-The electronics part is not that complex. Wire the servo, PIR motion sensor(s) and display to the ESP8266 board and done.
-
-Wemos D1 mini | SSD1306 display | PIR Sensor  | Servo
-------------- | --------------- | ----------- | -----
-5V            |                 | VIN         | VIN
-3.3V          | VIN             |             | 
-GND           | GND             | GND         | GND
-D0            |                 | Sensor 1    | 
-D1            | SCL             |             |
-D2            | SDA             |             |
-D5            |                 | Sensor 2    |
-D6            |                 | Sensor 3    |
-D8            |                 |             | CONTROL
-
-The software is build the way it can get trigger signals from up to three PIR motion sensors. But the project will also work with only one sensor connected. The diagram bellow shows two sensors, my test setup in the picture only uses one sensor.
-
-<img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/halloween-pumpkin-fire.png"  alt="Breadboard" width="640">
-
-<img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/electronics-1.jpg"  alt="Electronics 1" width="640">
-
-
 ## Software
-
 The code is writen in C++, `halloween.cpp` is the main class.
 
 The following software libraries are used. If using PlatformIO all dependencies are resolved automatically.
@@ -80,3 +58,25 @@ Parameter           | Type        | Usage
 fireInterval        | long        | min. interval in sec between flame activations (if motion was detected) to avoid permanent fire
 fireDuration        | long        | duration of one flame shot in ms aka. time until servo moves back to initial position
 flipScreen          | bool        | flip the display screen vertically
+
+## Building the circuit
+
+The electronics part is not that complex. Wire the servo, PIR motion sensor(s) and display to the ESP8266 board and done.
+
+Wemos D1 mini | SSD1306 display | PIR Sensor  | Servo
+------------- | --------------- | ----------- | -----
+5V            |                 | VIN         | VIN
+3.3V          | VIN             |             | 
+GND           | GND             | GND         | GND
+D0            |                 | Sensor 1    | 
+D1            | SCL             |             |
+D2            | SDA             |             |
+D5            |                 | Sensor 2    |
+D6            |                 | Sensor 3    |
+D8            |                 |             | CONTROL
+
+The software is build the way it can get trigger signals from up to three PIR motion sensors. But the project will also work with only one sensor connected. The diagram bellow shows two sensors, my test setup in the picture only uses one sensor.
+
+<img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/halloween-pumpkin-fire.png"  alt="Breadboard" width="640">
+
+<img src="https://github.com/mhaack/halloween-pumpkin-fire/blob/master/doc/electronics-1.jpg"  alt="Electronics 1" width="640">
