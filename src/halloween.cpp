@@ -30,7 +30,8 @@ NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 3600, 60000);
 PIRSensorNode pirSensorNode1("sensor-1", D0);
 PIRSensorNode pirSensorNode2("sensor-2", D5);
 PIRSensorNode pirSensorNode3("sensor-3", D6);
-ServoNode servoNode("fire", D8, OFF_POS);
+ServoNode servoNode("servo", D8, OFF_POS);
+HomieNode fireNode("fire", "switch");
 
 // init display & display node
 SSD1306Wire display(0x3c, D2, D1);
@@ -50,6 +51,7 @@ HomieSetting<long> fireDurationSetting("fireDuration", "The fire duration in mil
 void drawPumpkinFrame(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y);
 void drawSensorFrame(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y);
 void fire(bool fire);
+bool fireHandler(const HomieRange &range, const String &value);
 void loopHandler();
 
 void setup() {
@@ -80,11 +82,29 @@ void setup() {
     pirSensorNode2.onChange([](bool motion) { fire(motion); });
     pirSensorNode3.onChange([](bool motion) { fire(motion); });
 
+    // init the main fire node
+    fireNode.advertise("on").settable(fireHandler);
+
     timeClient.begin();
     Homie.setup();
 }
 
 void loop() { Homie.loop(); }
+
+bool fireHandler(const HomieRange &range, const String &value) {
+    if (value != "true" && value != "false") {
+        return false;
+    }
+
+    bool on = (value == "true");
+    if (on) {
+        lastFire = 0;
+    }
+    fire(on);
+    Homie.getLogger() << "Trigger fire via MQTT: " << (on ? "on" : "off") << endl;
+
+    return true;
+}
 
 void drawPumpkinFrame(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y) {
     display->setFont(ArialMT_Plain_10);
@@ -118,6 +138,7 @@ void fire(bool fire) {
     if (fire) {
         if (millis() - lastFire >= fireIntervalSetting.get() * 1000UL || lastFire == 0) {
             servoNode.setPos(ON_POS);
+            fireNode.setProperty("on").send(String(fire));
             fireOn = true;
             lastFire = millis();
             lastFireTime = timeClient.getFormattedTime();
@@ -128,6 +149,7 @@ void fire(bool fire) {
         }
     } else {
         servoNode.setPos(OFF_POS);
+        fireNode.setProperty("on").send(String(fire));
         fireOn = false;
     }
 }
